@@ -1,12 +1,12 @@
 @if (flight) {
   <h2>You are going to book {{ flight.airline }} ({{ flight.from }} → {{ flight.to }})</h2>
 } @else {
-  <p style="margin-bottom: 20px;">Loading flight details...</p>
+  <p >Loading flight details...</p>
 }
 <form class="booking-form-wrapper" [formGroup]="bookingForm" (ngSubmit)="submit()">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Booking Information</mat-card-title>
+      <mat-card-title style="margin-bottom: 20px;">Add your personal details</mat-card-title>
     </mat-card-header>
     <mat-card-content class="form-wrapper">
       <div class="row">
@@ -18,6 +18,8 @@
               <mat-error>Full name is required</mat-error>
             } @else if (bookingForm.get('fullName')?.hasError('minlength')) {
               <mat-error>Full name must be at least 3 characters</mat-error>
+            } @else if (bookingForm.get('fullName')?.hasError('pattern')) {
+              <mat-error>Full name can only contain letters and spaces</mat-error>
             }
           </mat-form-field>
         </div>
@@ -67,7 +69,7 @@
         </div>
       </div>
 
-      <button mat-raised-button color="primary" type="submit">Confirm booking</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="this.bookingForm.invalid">Confirm Booking</button>
     </mat-card-content>
   </mat-card>
 </form>

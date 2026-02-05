@@ -8,9 +8,9 @@
       </div>
       <div class="search-section-wrapper">
         <mat-form-field class="example-full-width">
+          <mat-label>Source</mat-label>
           <input
             type="text"
-            placeholder="Source"
             aria-label="Number"
             matInput
             formControlName="fromCity"
@@ -27,9 +27,9 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
+          <mat-label>Destination</mat-label>
           <input
             type="text"
-            placeholder="Destination"
             aria-label="Number"
             matInput
             formControlName="toCity"
@@ -74,7 +74,7 @@
             <mat-error> Return date must be after departure date </mat-error>
           }
         </mat-form-field>
-        <button matButton="filled" type="submit">Search</button>
+        <button matButton="filled" type="submit" [disabled]="this.form.invalid">Search</button>
       </div>
     </form>
   </div>

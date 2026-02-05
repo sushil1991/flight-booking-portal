@@ -26,7 +26,7 @@
     "to": "DEL",
     "departure": "2026-02-10T00:00:00.000Z",
     "arrival": "2026-02-11T00:00:00.000Z",
-    "durationMinutes": 1510,
+    "durationMinutes": 150,
     "price": 10
   },
   {
@@ -46,7 +46,7 @@
     "to": "DEL",
     "departure": "2026-02-11T00:00:00.000Z",
     "arrival": "2026-02-15T00:00:00.000Z",
-    "durationMinutes": 610,
+    "durationMinutes": 410,
     "price": 820
   },
   {

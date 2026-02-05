@@ -36,7 +36,10 @@ export class BookingForm {
     public fb: FormBuilder,
   ) {
     this.bookingForm = fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
+      fullName: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)],
+      ],
       email: ['', [Validators.required, Validators.email]],
       contactNumber: ['', [Validators.required, Validators.pattern(/^[0-9+\-\s]{7,15}$/)]],
       passengers: [1, [Validators.required, Validators.min(1), Validators.max(5)]],
@@ -48,7 +51,7 @@ export class BookingForm {
     this.flightService.getFlightById(this.flightId).subscribe((f) => (this.flight = f));
   }
   /**
-   * 
+   *
    * @returns validation error when there is an error in any of the form field
    * Once booking is done then navigate to the confirmation-page
    */

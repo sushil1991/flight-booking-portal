@@ -22,7 +22,7 @@ export class FlightService {
    * @param to to city
    * @param departureDate departure date of flight
    * @param returnDate return date of flight
-   * @returns flitered flights based on the search criteria
+   * @returns filtered flights based on the search criteria
    */
   searchFlights(
     from: string,

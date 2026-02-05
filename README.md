@@ -9,6 +9,18 @@ Destination: DEL
 Departure Date: 10-2-2026
 Return Date: 11-2-2026
 ```
+```bash
+Source: BLR
+Destination: CHE
+Departure Date: 13-2-2026
+Return Date: 18-2-2026
+```
+```bash
+Source: MUM
+Destination: HTR
+Departure Date: 11-2-2026
+Return Date: 15-2-2026
+```
 
 ## Development server
 

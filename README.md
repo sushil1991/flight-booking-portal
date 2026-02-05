@@ -8,7 +8,7 @@ Source: PUN
 Destination: DEL
 Departure Date: 10-2-2026
 Return Date: 11-2-2026
-```bash
+```
 
 ## Development server
 

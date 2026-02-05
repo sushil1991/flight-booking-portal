@@ -46,6 +46,9 @@ export class FlightSearch implements OnInit {
   ngOnInit() {
     this.form.get('returnDate')?.disable();
   }
+  /**
+   * submit the search form and navigate to the search results page with the query params
+   */
   submit() {
     const formData = {
       fromCity: this.form.value.fromCity,
@@ -65,12 +68,22 @@ export class FlightSearch implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param group is the form group
+   * @returns the validation error if return date is smaller than start date
+   */
   dateRangeValidator(group: FormGroup) {
     const departureDate = group.get('departureDate')?.value;
     const returnDate = group.get('returnDate')?.value;
     if (!departureDate || !returnDate) return null;
     return returnDate >= departureDate ? null : { dateRangeInvalid: true };
   }
+  /**
+   * 
+   * @param event is the slide toggle event
+   * @returns enable / disable the return date based on check / uncheck
+   */
 
   onToggleRoundTrip(event: MatSlideToggleChange) {
     console.log('Round Trip:', event.checked);

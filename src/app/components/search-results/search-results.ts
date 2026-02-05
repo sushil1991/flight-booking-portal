@@ -38,7 +38,13 @@ export class SearchResults {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
+      /**
+       * destructured the params to match the updated query param keys from flight-search component
+       */
       const { from, to, departureDate, returnDate } = params;
+      /**
+       * fetch the flights based on the search criteria and populate the filters based on the results
+       */
       this.flightService.searchFlights(from, to, departureDate, returnDate).subscribe((flights) => {
         this.flights = flights;
         this.airlines = [...new Set(flights.map((flightData) => flightData.airline))];
@@ -61,9 +67,13 @@ export class SearchResults {
   }
 
   onBook(flight: Flight) {
-    this.router.navigate(['/booking', flight.id]);
+    this.router.navigate(['/create-booking', flight.id]);
   }
-
+/**
+ * 
+ * @param event is the mat select event
+ * @returns will return the filtered flights based on price
+ */
   onPriceSelectionChange(event: MatSelectChange) {
     switch (event.value) {
       case 'price':
@@ -77,7 +87,11 @@ export class SearchResults {
     }
     return (this.filteredFlights = [...this.filteredFlights]);
   }
-
+/**
+ * 
+ * @param event is the mat select event
+ * @returns will return the filtered flights based on duration
+ */
   onDurationSelectionChange(event: MatSelectChange) {
     switch (event.value) {
       case 'short':
@@ -99,6 +113,12 @@ export class SearchResults {
 
     return (this.filteredFlights = [...this.filteredFlights]);
   }
+
+  /**
+   * 
+   * @param airline is the name of airline service provide
+   * @param checked is the value of checkbox
+   */
 
   onCheckboxToggle(airline: string, checked: boolean) {
     const currentState = this.filterForm.value.airlines || [];

@@ -23,14 +23,20 @@ export class BookingConfirmation {
   ) {}
 
   ngOnInit(): void {
-    const bookingId = this.route.snapshot.paramMap.get('bookingId')!;
-    this.flightService.getBooking(bookingId).subscribe((booking) => {
-      this.booking = booking;
-      if (booking) {
-        this.flightService
-          .getFlightById(booking.flightId)
-          .subscribe((flightData) => (this.flight = flightData));
-      }
-    });
+    const bookingId = this.route.snapshot.paramMap.get('bookingId');
+    if (bookingId) {
+      /**
+       * fetch the booking details based on the booking id and then fetch the flight details 
+       * based on the flight id from the booking details
+       */
+      this.flightService.getBooking(bookingId).subscribe((booking) => {
+        this.booking = booking;
+        if (booking) {
+          this.flightService
+            .getFlightById(booking.flightId)
+            .subscribe((flightData) => (this.flight = flightData));
+        }
+      });
+    }
   }
 }

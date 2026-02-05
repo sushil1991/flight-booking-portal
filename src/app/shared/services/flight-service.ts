@@ -16,6 +16,14 @@ export class FlightService {
   private loadMockData(): void {
     this.http.get<Flight[]>('assets/flightsInfo.json').subscribe((data) => (this.flights = data));
   }
+  /**
+   * 
+   * @param from from city
+   * @param to to city
+   * @param departureDate departure date of flight
+   * @param returnDate return date of flight
+   * @returns flitered flights based on the search criteria
+   */
   searchFlights(
     from: string,
     to: string,
@@ -26,6 +34,12 @@ export class FlightService {
       this.flights.filter((flightData) => flightData.from === from && flightData.to === to),
     );
   }
+
+  /**
+   * 
+   * @param id of the flight
+   * @returns return the single flight 
+   */
   getFlightById(id: string): Observable<Flight | undefined> {
     return of(this.flights.find((flight) => flight.id === id));
   }

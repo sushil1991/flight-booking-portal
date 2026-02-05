@@ -1,7 +1,7 @@
 @if (flight) {
   <h2>You are going to book {{ flight.airline }} ({{ flight.from }} → {{ flight.to }})</h2>
 } @else {
-  <p>Loading flight details...</p>
+  <p style="margin-bottom: 20px;">Loading flight details...</p>
 }
 <form class="booking-form-wrapper" [formGroup]="bookingForm" (ngSubmit)="submit()">
   <mat-card>

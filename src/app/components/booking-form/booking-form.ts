@@ -47,11 +47,11 @@ export class BookingForm {
     this.flightId = this.route.snapshot.paramMap.get('flightId')!;
     this.flightService.getFlightById(this.flightId).subscribe((f) => (this.flight = f));
   }
-
-  hasError(control: string, error: string): boolean {
-    const c = this.bookingForm.get(control);
-    return !!c && c.touched && c.hasError(error);
-  }
+  /**
+   * 
+   * @returns validation error when there is an error in any of the form field
+   * Once booking is done then navigate to the confirmation-page
+   */
 
   submit() {
     this.isFormSubmitted = true;
@@ -66,7 +66,7 @@ export class BookingForm {
         ...this.bookingForm.value,
       })
       .subscribe((booking) => {
-        this.router.navigate(['/confirmation', booking.id]);
+        this.router.navigate(['/booking-confirmation', booking.id]);
       });
   }
 }

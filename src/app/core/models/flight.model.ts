@@ -3,8 +3,8 @@ export interface Flight {
   airline: string;
   from: string;
   to: string;
-  departure: string; // ISO string
-  arrival: string;   // ISO string
+  departure: string;
+  arrival: string;   
   durationMinutes: number;
   price: number;
 }

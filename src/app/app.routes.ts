@@ -10,13 +10,13 @@ export const routes: Routes = [
     { path: '', pathMatch: 'full', component: FlightSearch },
   { path: 'results', component: SearchResults },
   {
-    path: 'booking/:flightId',
+    path: 'create-booking/:flightId',
     component: BookingForm,
     canActivate: [BookingGuard],
     canDeactivate: [bookingCanDeactivateGuard]
   },
   {
-    path: 'confirmation/:bookingId',
+    path: 'booking-confirmation/:bookingId',
     component: BookingConfirmation,
     canActivate: [BookingGuard]
   },

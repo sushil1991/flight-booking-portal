@@ -7,19 +7,18 @@ import { BookingConfirmation } from './components/booking-confirmation/booking-c
 import { bookingCanDeactivateGuard } from './core/guards/bookingCanDeactivateGuard';
 
 export const routes: Routes = [
-    { path: '', pathMatch: 'full', component: FlightSearch },
-  { path: 'results', component: SearchResults },
+  { path: '', pathMatch: 'full', component: FlightSearch },
+  { path: 'search-results', component: SearchResults },
   {
     path: 'create-booking/:flightId',
     component: BookingForm,
     canActivate: [BookingGuard],
-    canDeactivate: [bookingCanDeactivateGuard]
+    canDeactivate: [bookingCanDeactivateGuard],
   },
   {
     path: 'booking-confirmation/:bookingId',
     component: BookingConfirmation,
-    canActivate: [BookingGuard]
+    canActivate: [BookingGuard],
   },
-  { path: '**', redirectTo: '' }
-
+  { path: '**', redirectTo: '' },
 ];

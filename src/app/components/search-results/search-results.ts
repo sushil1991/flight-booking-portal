@@ -7,10 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../../shared/services/flight-service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { FlightFilters } from '../../shared/components/flight-filters/flight-filters';
 
 @Component({
   selector: 'app-search-results',
-  imports: [FlightCard, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule],
+  imports: [FlightCard, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule, FlightFilters],
   templateUrl: './search-results.html',
   styleUrl: './search-results.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -93,6 +94,7 @@ export class SearchResults {
  * @returns will return the filtered flights based on duration
  */
   onDurationSelectionChange(event: MatSelectChange) {
+    console.log(event)
     switch (event.value) {
       case 'short':
         this.filteredFlights = this.filteredFlights.filter(

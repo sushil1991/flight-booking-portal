@@ -8,6 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { Cities } from '../../shared/constants/constants';
+import { map } from 'rxjs/internal/operators/map';
+import { startWith } from 'rxjs/internal/operators/startWith';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-flight-search',
@@ -20,18 +27,25 @@ import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/sl
     MatButtonModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    AsyncPipe,
   ],
   standalone: true,
   templateUrl: './flight-search.html',
   styleUrl: './flight-search.scss',
 })
 export class FlightSearch implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
   today: Date = new Date();
+  Cities = Cities;
+  filteredOptionsCities!: Observable<string[]> | undefined;
   constructor(
     private fb: FormBuilder,
     private router: Router,
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.form = this.fb.group(
       {
         fromCity: ['', Validators.required],
@@ -41,10 +55,17 @@ export class FlightSearch implements OnInit {
       },
       { validators: this.dateRangeValidator },
     );
+    this.form.get('returnDate')?.disable();
+    this.filteredOptionsCities = this.form.get('toCity')?.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || '')),
+    );
   }
 
-  ngOnInit() {
-    this.form.get('returnDate')?.disable();
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.Cities.filter((city) => city.toLowerCase().includes(filterValue));
   }
   /**
    * submit the search form and navigate to the search results page with the query params
@@ -58,7 +79,7 @@ export class FlightSearch implements OnInit {
         ? new Date(this.form.controls['returnDate'].value).toISOString()
         : null,
     };
-    this.router.navigate(['/results'], {
+    this.router.navigate(['/search-results'], {
       queryParams: {
         from: formData.fromCity.toUpperCase(),
         to: formData.toCity.toUpperCase(),
@@ -69,7 +90,7 @@ export class FlightSearch implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param group is the form group
    * @returns the validation error if return date is smaller than start date
    */
@@ -80,7 +101,7 @@ export class FlightSearch implements OnInit {
     return returnDate >= departureDate ? null : { dateRangeInvalid: true };
   }
   /**
-   * 
+   *
    * @param event is the slide toggle event
    * @returns enable / disable the return date based on check / uncheck
    */

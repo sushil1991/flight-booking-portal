@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { inject } from '@angular/core';
 import { map } from 'rxjs';
 import { FlightService } from '../../shared/services/flight-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorMessages } from '../../shared/constants/constants';
 
 @Injectable({ providedIn: 'root' })
 export class BookingGuard {
@@ -22,7 +22,7 @@ export class BookingGuard {
           if (flightData && flightData.id === flightId) {
             return true;
           } else {
-            this.snack.open('Invalid flight ID', 'Close', { duration: 3000 });
+            this.snack.open(ErrorMessages.InvalidFlightId, 'Close', { duration: 3000 });
             return this.router.createUrlTree(['/']);
           }
         }),
@@ -34,7 +34,7 @@ export class BookingGuard {
           if (bookingData && bookingData.id === bookingId) {
             return true;
           } else {
-            this.snack.open('Invalid booking ID', 'Close', { duration: 3000 });
+            this.snack.open(ErrorMessages.InvalidBookingId, 'Close', { duration: 3000 });
             return this.router.createUrlTree(['/']);
           }
         }),

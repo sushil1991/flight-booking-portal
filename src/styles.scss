@@ -36,3 +36,26 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+.filters {
+  display: grid;
+  gap: 24px;
+  width: 170px;
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 10px;
+  }
+}
+.main-wrapper {
+  margin-top: 16px;
+  @extend .results-container;
+}
+
+.results-container {
+  display: flex;
+  column-gap: 16px;
+  row-gap: 16px;
+}

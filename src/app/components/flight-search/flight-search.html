@@ -7,17 +7,39 @@
         </mat-slide-toggle>
       </div>
       <div class="search-section-wrapper">
-        <mat-form-field appearance="outline">
-          <mat-label>Source</mat-label>
-          <input matInput formControlName="fromCity" />
+        <mat-form-field class="example-full-width">
+          <input
+            type="text"
+            placeholder="Source"
+            aria-label="Number"
+            matInput
+            formControlName="fromCity"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            @for (city of filteredOptionsCities | async; track city) {
+              <mat-option [value]="city">{{ city }}</mat-option>
+            }
+          </mat-autocomplete>
           @if (form.get('fromCity')?.hasError('required')) {
             <mat-error> Source is required </mat-error>
           }
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Destination</mat-label>
-          <input matInput formControlName="toCity" />
+        <mat-form-field class="example-full-width">
+          <input
+            type="text"
+            placeholder="Destination"
+            aria-label="Number"
+            matInput
+            formControlName="toCity"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            @for (city of filteredOptionsCities | async; track city) {
+              <mat-option [value]="city">{{ city }}</mat-option>
+            }
+          </mat-autocomplete>
           @if (form.get('toCity')?.hasError('required')) {
             <mat-error> Destination is required </mat-error>
           }
@@ -52,7 +74,7 @@
             <mat-error> Return date must be after departure date </mat-error>
           }
         </mat-form-field>
-        <button matButton="filled"  type="submit">Search</button>
+        <button matButton="filled" type="submit">Search</button>
       </div>
     </form>
   </div>

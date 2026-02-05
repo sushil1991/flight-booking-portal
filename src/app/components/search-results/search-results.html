@@ -1,20 +1,12 @@
 <div [formGroup]="filterForm" class="main-wrapper">
   @if (flights.length) {
     <div class="filters">
-      <mat-card appearance="outlined">
-        <div class="filter-group">
-          <label>Airlines</label>
-          @for (airline of airlines; track $index) {
-            <mat-checkbox
-              [value]="airline"
-              (change)="onCheckboxToggle(airline, $event.checked)"
-              [checked]="filterForm.value.airlines.includes(airline)"
-            >
-              {{ airline }}
-            </mat-checkbox>
-          }
-        </div>
-      </mat-card>
+      <app-flight-filters
+        [airlines]="airlines"
+        (airlineChange)="onCheckboxToggle($event.airline, $event.checked)"
+        [flights]="flights"
+      >
+      </app-flight-filters>
       <mat-card appearance="outlined">
         <div class="filter-group">
           <label>Duration</label>

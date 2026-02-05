@@ -1,0 +1,18 @@
+@if (flights.length) {
+  <div class="filters" [formGroup]="filterForm">
+    <mat-card appearance="outlined">
+      <div class="filter-group">
+        <label>Airlines</label>
+        @for (airline of airlines; track $index) {
+          <mat-checkbox
+            [value]="airline"
+            (change)="onCheckboxToggle(airline, $event.checked)"
+            [checked]="filterForm.value.airlines.includes(airline)"
+          >
+            {{ airline }}
+          </mat-checkbox>
+        }
+      </div>
+    </mat-card>
+  </div>
+}

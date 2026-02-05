@@ -19,7 +19,7 @@
     "durationMinutes": 510,
     "price": 520
   },
-   {
+  {
     "id": "F003",
     "airline": "AirIndia",
     "from": "PUN",
@@ -29,7 +29,7 @@
     "durationMinutes": 1510,
     "price": 10
   },
-    {
+  {
     "id": "F004",
     "airline": "British Airways",
     "from": "MUM",
@@ -39,7 +39,7 @@
     "durationMinutes": 510,
     "price": 520
   },
-      {
+  {
     "id": "F005",
     "airline": "Indigo",
     "from": "PUN",
@@ -49,7 +49,7 @@
     "durationMinutes": 610,
     "price": 820
   },
-      {
+  {
     "id": "F006",
     "airline": "Indigo",
     "from": "MUM",
@@ -59,14 +59,34 @@
     "durationMinutes": 250,
     "price": 520
   },
-      {
+  {
     "id": "F007",
     "airline": "Indigo",
     "from": "PUN",
     "to": "DEL",
-    "departure": "2026-02-11T00:00:00.000Z",
-    "arrival": "2026-02-15T00:00:00.000Z",
+    "departure": "2026-02-16T00:00:00.000Z",
+    "arrival": "2026-02-21T00:00:00.000Z",
     "durationMinutes": 310,
     "price": 220
+  },
+  {
+    "id": "F008",
+    "airline": "Indigo",
+    "from": "BLR",
+    "to": "CHE",
+    "departure": "2026-02-13T00:00:00.000Z",
+    "arrival": "2026-02-18T00:00:00.000Z",
+    "durationMinutes": 100,
+    "price": 78
+  },
+  {
+    "id": "F009",
+    "airline": "Indigo",
+    "from": "GOI",
+    "to": "AMD",
+    "departure": "2026-02-17T00:00:00.000Z",
+    "arrival": "2026-02-22T00:00:00.000Z",
+    "durationMinutes": 110,
+    "price": 98
   }
 ]

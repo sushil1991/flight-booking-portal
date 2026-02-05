@@ -9,9 +9,8 @@ describe('FlightCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FlightCard]
-    })
-    .compileComponents();
+      imports: [FlightCard],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FlightCard);
     component = fixture.componentInstance;
@@ -25,7 +24,4 @@ describe('FlightCard', () => {
     expect(component.book).toBeDefined();
     expect(component.book.emit).toBeDefined();
   });
-
-  
-
 });

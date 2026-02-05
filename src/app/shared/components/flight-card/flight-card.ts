@@ -18,5 +18,4 @@ export class FlightCard {
   onBook(): void {
     this.book.emit(this.flight);
   }
-
 }

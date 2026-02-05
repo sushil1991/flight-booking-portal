@@ -97,6 +97,8 @@ describe('SearchResults', () => {
     component.filteredFlights = [...mockFlights];
     const event = { value: 'price' } as MatSelectChange;
     component.onPriceSelectionChange(event);
-    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([150, 300, 500]);
+    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([
+      150, 300, 500,
+    ]);
   });
 });

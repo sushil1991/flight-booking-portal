@@ -7,11 +7,11 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
   imports: [MatDialogModule, MatButtonModule],
   templateUrl: './confimation-popup.html',
   styleUrl: './confimation-popup.scss',
-  standalone  : true,
+  standalone: true,
 })
 export class ConfimationPopup {
-constructor(
+  constructor(
     public dialogRef: MatDialogRef<ConfimationPopup>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string }
+    @Inject(MAT_DIALOG_DATA) public data: { title: string; message: string },
   ) {}
 }

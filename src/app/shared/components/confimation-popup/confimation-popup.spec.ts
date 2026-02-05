@@ -10,9 +10,11 @@ describe('ConfimationPopup', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfimationPopup],
-      providers: [ { provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} } ]
-    })
-    .compileComponents();
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ConfimationPopup);
     component = fixture.componentInstance;
@@ -22,6 +24,4 @@ describe('ConfimationPopup', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
 });

@@ -19,7 +19,7 @@ import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/sl
     MatNativeDateModule,
     MatButtonModule,
     MatCardModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   standalone: true,
   templateUrl: './flight-search.html',
@@ -44,7 +44,7 @@ export class FlightSearch implements OnInit {
   }
 
   ngOnInit() {
-      this.form.get('returnDate')?.disable();
+    this.form.get('returnDate')?.disable();
   }
   submit() {
     const formData = {
@@ -72,9 +72,9 @@ export class FlightSearch implements OnInit {
     return returnDate >= departureDate ? null : { dateRangeInvalid: true };
   }
 
-    onToggleRoundTrip(event: MatSlideToggleChange) {
+  onToggleRoundTrip(event: MatSlideToggleChange) {
     console.log('Round Trip:', event.checked);
-    if(event.checked) {
+    if (event.checked) {
       this.form.get('returnDate')?.enable();
     } else {
       this.form.get('returnDate')?.disable();

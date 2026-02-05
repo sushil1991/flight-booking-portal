@@ -27,7 +27,9 @@ export class BookingConfirmation {
     this.flightService.getBooking(bookingId).subscribe((booking) => {
       this.booking = booking;
       if (booking) {
-        this.flightService.getFlightById(booking.flightId).subscribe((flightData) => (this.flight = flightData));
+        this.flightService
+          .getFlightById(booking.flightId)
+          .subscribe((flightData) => (this.flight = flightData));
       }
     });
   }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports:[ MatToolbarModule, MatButtonModule],
+  imports: [MatToolbarModule, MatButtonModule],
 
   templateUrl: './header.html',
   styleUrl: './header.scss',

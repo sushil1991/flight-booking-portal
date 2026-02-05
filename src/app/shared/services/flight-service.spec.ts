@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FlightService } from './flight-service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
+import { Booking } from '../../core/models/booking.model';
 
 describe('FlightService', () => {
   let service: FlightService;
@@ -21,5 +22,20 @@ describe('FlightService', () => {
   });
   afterEach(() => {
     httpMock.verify();
+  });
+  it('should search flights', () => {
+    service.searchFlights('NYC', 'LAX', '2024-10-01').subscribe((flights) => {
+      expect(flights).toEqual([]);
+    });
+  });
+  it('should get flight by id', () => {
+    service.getFlightById('123').subscribe((flight) => {
+      expect(flight).toBeUndefined();
+    });
+  });
+  it('shoudl get the booking', () => {
+    service.getBooking('123').subscribe((flight) => {
+      expect(flight).toBeUndefined();
+    });
   });
 });

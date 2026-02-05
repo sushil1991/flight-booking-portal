@@ -31,7 +31,7 @@ export class FlightService {
   }
 
   createBooking(booking: Booking): Observable<Booking> {
-    const id = `BKG-${Math.floor(Math.random() * 1_000_000)}`;
+    const id = `PNR-${Math.floor(Math.random() * 1_000_000)}`;
     const saved: Booking = { ...booking, id };
     this.bookings.set(id, saved);
     return of(saved);

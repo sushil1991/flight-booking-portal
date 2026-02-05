@@ -45,4 +45,14 @@ describe('SearchResults', () => {
   afterEach(() => {
     httpMock.verify();
   });
+
+  it('should add airline when checked = true', () => {
+    component.onCheckboxToggle('Delta', true);
+    expect(component.filterForm.value.airlines).toEqual(['Delta']);
+  });
+  it('should remove airline when checked = false', () => {
+    component.filterForm.patchValue({ airlines: ['Delta', 'United'] });
+    component.onCheckboxToggle('Delta', false);
+    expect(component.filterForm.value.airlines).toEqual(['United']);
+  });
 });

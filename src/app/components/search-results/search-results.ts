@@ -65,31 +65,46 @@ export class SearchResults {
   }
 
   onPriceSelectionChange(event: MatSelectChange) {
-    if (event.value === 'price') {
-      this.filteredFlights.sort((a, b) => a.price - b.price);
-    } else if (event.value === 'duration') {
-      this.filteredFlights.sort((a, b) => a.durationMinutes - b.durationMinutes);
+    switch (event.value) {
+      case 'price':
+        this.filteredFlights = [...this.filteredFlights].sort((a, b) => a.price - b.price);
+        break;
+      case 'duration':
+        this.filteredFlights = [...this.filteredFlights].sort(
+          (a, b) => a.durationMinutes - b.durationMinutes,
+        );
+        break;
     }
     return (this.filteredFlights = [...this.filteredFlights]);
   }
 
   onDurationSelectionChange(event: MatSelectChange) {
-    if (event.value === 'short') {
-      this.filteredFlights = this.filteredFlights.filter((flightData) => flightData.durationMinutes <= 240);
-    } else if (event.value === 'medium') {
-      this.filteredFlights = this.filteredFlights.filter(
-        (flightData) => flightData.durationMinutes > 240 && flightData.durationMinutes <= 480,
-      );
-    } else if (event.value === 'long') {
-      this.filteredFlights = this.filteredFlights.filter((flightData) => flightData.durationMinutes > 480);
+    switch (event.value) {
+      case 'short':
+        this.filteredFlights = this.filteredFlights.filter(
+          (flightData) => flightData.durationMinutes <= 240,
+        );
+        break;
+      case 'medium':
+        this.filteredFlights = this.filteredFlights.filter(
+          (flightData) => flightData.durationMinutes > 240 && flightData.durationMinutes <= 480,
+        );
+        break;
+      case 'long':
+        this.filteredFlights = this.filteredFlights.filter(
+          (flightData) => flightData.durationMinutes > 480,
+        );
+        break;
     }
 
     return (this.filteredFlights = [...this.filteredFlights]);
   }
 
   onCheckboxToggle(airline: string, checked: boolean) {
-    const current = this.filterForm.value.airlines || [];
-    const updated = checked ? [...current, airline] : current.filter((a: any) => a !== airline);
-    this.filterForm.patchValue({ airlines: updated });
+    const currentState = this.filterForm.value.airlines || [];
+    const updatedState = checked
+      ? [...currentState, airline]
+      : currentState.filter((a: any) => a !== airline);
+    this.filterForm.patchValue({ airlines: updatedState });
   }
 }

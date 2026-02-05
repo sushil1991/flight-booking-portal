@@ -3,10 +3,12 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
 
 ## Use Below Configuration to get the results
+```bash
 Source: PUN
 Destination: DEL
 Departure Date: 10-2-2026
 Return Date: 11-2-2026
+```bash
 
 ## Development server
 

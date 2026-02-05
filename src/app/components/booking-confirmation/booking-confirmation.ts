@@ -5,10 +5,11 @@ import { Booking } from '../../core/models/booking.model';
 import { Flight } from '../../core/models/flight.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { BookingDetails } from '../../shared/components/booking-details/booking-details';
 
 @Component({
   selector: 'app-booking-confirmation',
-  imports: [MatCardModule, MatListModule],
+  imports: [MatCardModule, MatListModule, BookingDetails],
   templateUrl: './booking-confirmation.html',
   styleUrl: './booking-confirmation.scss',
 })

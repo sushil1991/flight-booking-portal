@@ -1,0 +1,11 @@
+@if (title) {
+  <h3>{{ title }}</h3>
+}
+
+<mat-list role="list">
+  @for (item of items; track item.label) {
+    <mat-list-item role="listitem">
+      {{ item.label }}: <b>{{ item.value }}</b>
+    </mat-list-item>
+  }
+</mat-list>

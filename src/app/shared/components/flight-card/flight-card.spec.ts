@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FlightCard } from './flight-card';
+import { Flight } from '../../../core/models/flight.model';
 
 describe('FlightCard', () => {
   let component: FlightCard;
@@ -20,5 +21,11 @@ describe('FlightCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should have book event emitter', () => {
+    expect(component.book).toBeDefined();
+    expect(component.book.emit).toBeDefined();
+  });
+
+  
 
 });

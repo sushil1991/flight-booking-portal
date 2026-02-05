@@ -5,15 +5,48 @@ import { FlightCard } from '../../shared/components/flight-card/flight-card';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { provideRouter } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { FlightService } from '../../shared/services/flight-service';
+import { Flight } from '../../core/models/flight.model';
 
 describe('SearchResults', () => {
   let component: SearchResults;
   let fixture: ComponentFixture<SearchResults>;
   let httpMock: HttpTestingController;
+  const mockFlights: Flight[] = [
+    {
+      id: '1',
+      airline: 'Another Airline',
+      departure: 'BOS',
+      arrival: 'MIA',
+      price: 150,
+      durationMinutes: 120,
+      from: 'BOS',
+      to: 'MIA',
+    },
+    {
+      id: '2',
+      airline: 'Another Airline',
+      departure: 'BOS',
+      arrival: 'MIA',
+      price: 300,
+      durationMinutes: 120,
+      from: 'BOS',
+      to: 'MIA',
+    },
+    {
+      id: '3',
+      airline: 'Another Airline',
+      departure: 'BOS',
+      arrival: 'MIA',
+      price: 500,
+      durationMinutes: 120,
+      from: 'BOS',
+      to: 'MIA',
+    },
+  ];
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -54,5 +87,16 @@ describe('SearchResults', () => {
     component.filterForm.patchValue({ airlines: ['Delta', 'United'] });
     component.onCheckboxToggle('Delta', false);
     expect(component.filterForm.value.airlines).toEqual(['United']);
+  });
+  it('should sort flights by price (ascending)', () => {
+    const event = { value: 'price' } as MatSelectChange;
+    component.onPriceSelectionChange(event);
+    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([]);
+  });
+  it('should sort flights by price (ascending)', () => {
+    component.filteredFlights = [...mockFlights];
+    const event = { value: 'price' } as MatSelectChange;
+    component.onPriceSelectionChange(event);
+    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([150, 300, 500]);
   });
 });

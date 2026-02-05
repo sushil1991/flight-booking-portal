@@ -1,6 +1,8 @@
-<div *ngIf="flight; else loading">
+@if (flight) {
   <h2>You are going to book {{ flight.airline }} ({{ flight.from }} → {{ flight.to }})</h2>
-</div>
+} @else {
+  <p>Loading flight details...</p>
+}
 <form class="booking-form-wrapper" [formGroup]="bookingForm" (ngSubmit)="submit()">
   <mat-card>
     <mat-card-header>
@@ -43,21 +45,18 @@
             } @else if (bookingForm.get('contactNumber')?.hasError('pattern')) {
               <mat-error>Enter a valid contact number</mat-error>
             }
-            <!-- <mat-error *ngIf="hasError('contactNumber', 'required')">
-            Contact number is required
-          </mat-error>
-          <mat-error *ngIf="hasError('contactNumber', 'pattern')">
-            Enter a valid contact number
-          </mat-error> -->
           </mat-form-field>
         </div>
       </div>
+      
       <div class="row">
         <div class="col">
           <mat-form-field appearance="outline">
             <mat-label>No. of passengers</mat-label>
-            <input matInput type="number" formControlName="passengers" />
-            @if (bookingForm.get('email')?.hasError('required')) {
+            <input matInput type="number" formControlName="passengers"
+            
+            />
+            @if (bookingForm.get('passengers')?.hasError('required')) {
               <mat-error>Number of passengers is required</mat-error>
             } @else if (bookingForm.get('passengers')?.hasError('min')) {
               <mat-error>At least 1 passenger</mat-error>
@@ -72,5 +71,3 @@
     </mat-card-content>
   </mat-card>
 </form>
-
-<ng-template #loading> Loading flight details... </ng-template>

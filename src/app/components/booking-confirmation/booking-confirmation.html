@@ -8,24 +8,29 @@
         Your booking reference ID is <strong>{{ booking.id }}</strong
         >.
       </p>
-
-      <h3>Flight details</h3>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Selected Airline: <b>{{ flight.airline }}</b></mat-list-item>
-        <mat-list-item role="listitem">Route: <b>{{ flight.from }} → {{ flight.to }}</b></mat-list-item>
-        <mat-list-item role="listitem"
-          >Duration: <b>{{ flight.durationMinutes }} minutes</b></mat-list-item
+      <div>
+        <app-booking-details
+          title="Flight details"
+          [items]="[
+            { label: 'Selected Airline', value: flight.airline },
+            { label: 'Route', value: flight.from + ' → ' + flight.to },
+            { label: 'Duration', value: flight.durationMinutes + ' minutes' },
+            { label: 'Price', value: '£' + flight.price },
+          ]"
         >
-        <mat-list-item role="listitem">Price: <b>£{{ flight.price }}</b></mat-list-item>
-      </mat-list>
+        </app-booking-details>
 
-      <h3>Passenger details</h3>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Name: <b>{{ booking.fullName }}</b></mat-list-item>
-        <mat-list-item role="listitem">Email: <b>{{ booking.email }}</b></mat-list-item>
-        <mat-list-item role="listitem">Contact: <b>{{ booking.contactNumber }}</b></mat-list-item>
-        <mat-list-item role="listitem">No Of Passengers: <b>{{ booking.passengers }}</b></mat-list-item>
-      </mat-list>
+        <app-booking-details
+          title="Passenger details"
+          [items]="[
+            { label: 'Name', value: booking.fullName },
+            { label: 'Email', value: booking.email },
+            { label: 'Contact', value: booking.contactNumber },
+            { label: 'No Of Passengers', value: booking.passengers },
+          ]"
+        >
+        </app-booking-details>
+      </div>
     </mat-card-content>
   </mat-card>
 } @else {

@@ -38,4 +38,19 @@ describe('FlightService', () => {
       expect(flight).toBeUndefined();
     });
   });
+  it('should create a booking', () => {
+    const booking: Booking = {
+      flightId: '123',
+      fullName: 'John Doe',
+      email: 'john.doe@example.com',
+      contactNumber: '1234567890',
+      passengers: 2,
+      id: '',
+    };
+    service.createBooking(booking).subscribe((created) => {
+      expect(created.id).toMatch(/^PNR-\d{1,6}$/);
+      expect(created.fullName).toBe(booking.fullName);
+    });
+  })
+
 });

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleChange, MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-flight-search',
@@ -18,12 +19,13 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatButtonModule,
     MatCardModule,
+    MatSlideToggleModule
   ],
   standalone: true,
   templateUrl: './flight-search.html',
   styleUrl: './flight-search.scss',
 })
-export class FlightSearch {
+export class FlightSearch implements OnInit {
   form: FormGroup;
   today: Date = new Date();
   constructor(
@@ -41,6 +43,9 @@ export class FlightSearch {
     );
   }
 
+  ngOnInit() {
+      this.form.get('returnDate')?.disable();
+  }
   submit() {
     const formData = {
       fromCity: this.form.value.fromCity,
@@ -65,5 +70,15 @@ export class FlightSearch {
     const returnDate = group.get('returnDate')?.value;
     if (!departureDate || !returnDate) return null;
     return returnDate >= departureDate ? null : { dateRangeInvalid: true };
+  }
+
+    onToggleRoundTrip(event: MatSlideToggleChange) {
+    console.log('Round Trip:', event.checked);
+    if(event.checked) {
+      this.form.get('returnDate')?.enable();
+    } else {
+      this.form.get('returnDate')?.disable();
+    }
+    return event.checked;
   }
 }

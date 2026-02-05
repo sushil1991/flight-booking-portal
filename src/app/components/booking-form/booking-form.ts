@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-booking-form',
   imports: [
-    NgIf,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -28,12 +27,13 @@ export class BookingForm {
   flight?: Flight;
   bookingForm: FormGroup;
   flightId?: string;
+  isFormSubmitted = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private flightService: FlightService,
-    fb: FormBuilder,
+    public fb: FormBuilder,
   ) {
     this.bookingForm = fb.group({
       fullName: ['', [Validators.required, Validators.minLength(3)]],
@@ -54,6 +54,7 @@ export class BookingForm {
   }
 
   submit() {
+    this.isFormSubmitted = true;
     if (this.bookingForm.invalid) {
       this.bookingForm.markAllAsTouched();
       return;

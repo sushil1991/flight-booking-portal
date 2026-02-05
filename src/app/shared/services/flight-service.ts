@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Flight } from '../../core/models/flight.model';
 import { Booking } from '../../core/models/booking.model';
 
@@ -14,23 +14,20 @@ export class FlightService {
   }
 
   private loadMockData(): void {
-    this.http.get<Flight[]>('assets/flightsInfo.json')
-      .subscribe(data => this.flights = data);
+    this.http.get<Flight[]>('assets/flightsInfo.json').subscribe((data) => (this.flights = data));
   }
-  searchFlights(from: string, to: string, departureDate: string, returnDate?: string): Observable<Flight[]> {
-    return of(this.flights.filter(flightData => flightData.from === from && flightData.to === to));
+  searchFlights(
+    from: string,
+    to: string,
+    departureDate: string,
+    returnDate?: string,
+  ): Observable<Flight[]> {
+    return of(
+      this.flights.filter((flightData) => flightData.from === from && flightData.to === to),
+    );
   }
-
-  // searchFlights(from: string, to: string, departureDate: string, returnDate?: string): Observable<Flight[]> {
-  //   return of(this.flights).pipe(
-  //     map(list => {
-  //       return list.filter(flightData => flightData.from === from && flightData.to === to);
-  //     })
-  //   );
-  // }
-
   getFlightById(id: string): Observable<Flight | undefined> {
-    return of(this.flights.find(flight => flight.id === id));
+    return of(this.flights.find((flight) => flight.id === id));
   }
 
   createBooking(booking: Booking): Observable<Booking> {
@@ -41,7 +38,6 @@ export class FlightService {
   }
 
   getBooking(id: string): Observable<Booking | undefined> {
-    
     return of(this.bookings.get(id));
   }
 }

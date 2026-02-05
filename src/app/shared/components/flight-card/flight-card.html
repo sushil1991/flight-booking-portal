@@ -1,7 +1,8 @@
 <mat-card class="example-card row" appearance="outlined">
+  @if(flight) {
   <mat-card-header>
-    <img mat-card-avatar [src]="'assets/airlines/' + flight.airline + '.png'" alt="{{ flight.airline }} logo" />
-    <mat-card-title>{{ flight.airline }}</mat-card-title>
+    <img mat-card-avatar [src]="'assets/airlines/' + flight['airline'] + '.png'" alt="{{ flight['airline'] }} logo" />
+    <mat-card-title>{{ flight['airline'] }}</mat-card-title>
     <mat-card-subtitle>{{ flight.from }}
         <span>→</span> {{ flight.to }}
     </mat-card-subtitle>
@@ -13,4 +14,5 @@
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="onBook()">Book</button>
   </mat-card-actions>
+}
 </mat-card>

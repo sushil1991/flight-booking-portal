@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-search-results',
-  imports: [ FlightCard, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule],
+  imports: [FlightCard, MatSelectModule, MatCheckboxModule, ReactiveFormsModule, MatCardModule],
   templateUrl: './search-results.html',
   styleUrl: './search-results.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,6 +21,7 @@ export class SearchResults {
   filteredFlights: Flight[] = [];
   airlines: string[] = [];
   filterForm: FormGroup;
+  selectedSlots: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class SearchResults {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const { from, to, departureDate, returnDate } = params;
       this.flightService.searchFlights(from, to, departureDate, returnDate).subscribe((flights) => {
@@ -48,7 +49,7 @@ export class SearchResults {
     this.filterForm.valueChanges.subscribe(() => this.applyFilters());
   }
 
-  applyFilters(): void {
+  applyFilters() {
     const { airlines } = this.filterForm.value;
     let list = [...this.flights];
 
@@ -59,40 +60,34 @@ export class SearchResults {
     this.filteredFlights = list;
   }
 
-  onBook(flight: Flight): void {
+  onBook(flight: Flight) {
     this.router.navigate(['/booking', flight.id]);
   }
 
   onPriceSelectionChange(event: MatSelectChange) {
-     if (event.value === 'price') {
+    if (event.value === 'price') {
       this.filteredFlights.sort((a, b) => a.price - b.price);
     } else if (event.value === 'duration') {
       this.filteredFlights.sort((a, b) => a.durationMinutes - b.durationMinutes);
     }
-    return this.filteredFlights = [...this.filteredFlights];
+    return (this.filteredFlights = [...this.filteredFlights]);
   }
 
   onDurationSelectionChange(event: MatSelectChange) {
-      if (event.value === 'short') {
-        this.filteredFlights = this.filteredFlights.filter((f) => f.durationMinutes <= 240);
-      } else if (event.value === 'medium') {
-        this.filteredFlights = this.filteredFlights.filter((f) => f.durationMinutes > 240 && f.durationMinutes <= 480);
-      } else if (event.value === 'long') {
-        this.filteredFlights = this.filteredFlights.filter((f) => f.durationMinutes > 480);
-      }
-    
-    return this.filteredFlights = [...this.filteredFlights];
+    if (event.value === 'short') {
+      this.filteredFlights = this.filteredFlights.filter((flightData) => flightData.durationMinutes <= 240);
+    } else if (event.value === 'medium') {
+      this.filteredFlights = this.filteredFlights.filter(
+        (flightData) => flightData.durationMinutes > 240 && flightData.durationMinutes <= 480,
+      );
+    } else if (event.value === 'long') {
+      this.filteredFlights = this.filteredFlights.filter((flightData) => flightData.durationMinutes > 480);
+    }
+
+    return (this.filteredFlights = [...this.filteredFlights]);
   }
 
-  onAirlineChange(airline: string, checked: boolean): void {
-    const selected = this.filterForm.value.airlines as string[];
-    if (checked) {
-      this.filterForm.patchValue({ airlines: [...selected, airline] });
-    } else {
-      this.filterForm.patchValue({ airlines: selected.filter((a) => a !== airline) });
-    }
-  }
-  onAirlineToggle(airline: string, checked: boolean) {
+  onCheckboxToggle(airline: string, checked: boolean) {
     const current = this.filterForm.value.airlines || [];
     const updated = checked ? [...current, airline] : current.filter((a: any) => a !== airline);
     this.filterForm.patchValue({ airlines: updated });

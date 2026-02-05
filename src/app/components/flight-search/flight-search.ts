@@ -6,7 +6,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { MatCard, MatCardModule } from "@angular/material/card";
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-flight-search',
@@ -17,8 +17,8 @@ import { MatCard, MatCardModule } from "@angular/material/card";
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatCardModule
-],
+    MatCardModule,
+  ],
   standalone: true,
   templateUrl: './flight-search.html',
   styleUrl: './flight-search.scss',
@@ -30,25 +30,30 @@ export class FlightSearch {
     private fb: FormBuilder,
     private router: Router,
   ) {
-    this.form = this.fb.group({
-      from: ['', Validators.required],
-      to: ['', Validators.required],
-      departureDate: ['', Validators.required],
-      returnDate: ['', ],
-    },{validators: this.dateRangeValidator});
+    this.form = this.fb.group(
+      {
+        fromCity: ['', Validators.required],
+        toCity: ['', Validators.required],
+        departureDate: ['', Validators.required],
+        returnDate: [''],
+      },
+      { validators: this.dateRangeValidator },
+    );
   }
 
   submit() {
     const formData = {
-      from: this.form.value.from,
-      to: this.form.value.to,
+      fromCity: this.form.value.fromCity,
+      toCity: this.form.value.toCity,
       departureDate: new Date(this.form.controls['departureDate'].value).toISOString(),
-      returnDate: this.form.controls['returnDate'].value ? new Date(this.form.controls['returnDate'].value).toISOString() : null,
+      returnDate: this.form.controls['returnDate'].value
+        ? new Date(this.form.controls['returnDate'].value).toISOString()
+        : null,
     };
     this.router.navigate(['/results'], {
       queryParams: {
-        from: formData.from.toUpperCase(),
-        to: formData.to.toUpperCase(),
+        from: formData.fromCity.toUpperCase(),
+        to: formData.toCity.toUpperCase(),
         departureDate: formData.departureDate,
         returnDate: formData.returnDate ? formData.returnDate : null,
       },
@@ -61,4 +66,4 @@ export class FlightSearch {
     if (!departureDate || !returnDate) return null;
     return returnDate >= departureDate ? null : { dateRangeInvalid: true };
   }
-} 
+}

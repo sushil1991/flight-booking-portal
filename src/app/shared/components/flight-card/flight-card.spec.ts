@@ -20,4 +20,5 @@ describe('FlightCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

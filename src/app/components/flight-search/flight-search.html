@@ -4,16 +4,16 @@
    
   <mat-form-field appearance="outline">
     <mat-label>Source</mat-label>
-    <input matInput formControlName="from" />
-    @if (form.get('from')?.hasError('required')) {
+    <input matInput formControlName="fromCity" />
+    @if (form.get('fromCity')?.hasError('required')) {
       <mat-error> Source is required </mat-error>
     }
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Destination</mat-label>
-    <input matInput formControlName="to" />
-    @if (form.get('to')?.hasError('required')) {
+    <input matInput formControlName="toCity" />
+    @if (form.get('toCity')?.hasError('required')) {
       <mat-error> Destination is required </mat-error>
     }
   </mat-form-field>

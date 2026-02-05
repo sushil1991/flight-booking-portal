@@ -1,0 +1,15 @@
+.booking-form-wrapper{
+    display: flex;
+    justify-content: center;
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+}

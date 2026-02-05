@@ -1,0 +1,33 @@
+@if (booking && flight) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Booking confirmed</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Your booking reference ID is <strong>{{ booking.id }}</strong
+        >.
+      </p>
+
+      <h3>Flight details</h3>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Selected Airline: <b>{{ flight.airline }}</b></mat-list-item>
+        <mat-list-item role="listitem">Route: <b>{{ flight.from }} → {{ flight.to }}</b></mat-list-item>
+        <mat-list-item role="listitem"
+          >Duration: <b>{{ flight.durationMinutes }} minutes</b></mat-list-item
+        >
+        <mat-list-item role="listitem">Price: <b>£{{ flight.price }}</b></mat-list-item>
+      </mat-list>
+
+      <h3>Passenger details</h3>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Name: <b>{{ booking.fullName }}</b></mat-list-item>
+        <mat-list-item role="listitem">Email: <b>{{ booking.email }}</b></mat-list-item>
+        <mat-list-item role="listitem">Contact: <b>{{ booking.contactNumber }}</b></mat-list-item>
+        <mat-list-item role="listitem">No Of Passengers: <b>{{ booking.passengers }}</b></mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  <div>No booking or flight details available.</div>
+}

@@ -1,0 +1,52 @@
+<div [formGroup]="filterForm" class="main-wrapper">
+  @if (flights.length) {
+    <div class="filters">
+      <mat-card appearance="outlined">
+        <div class="filter-group">
+          <label>Airlines</label>
+          @for (airline of airlines; track $index) {
+            <mat-checkbox
+              [value]="airline"
+              (change)="onAirlineToggle(airline, $event.checked)"
+              [checked]="filterForm.value.airlines.includes(airline)"
+            >
+              {{ airline }}
+            </mat-checkbox>
+          }
+        </div>
+      </mat-card>
+      <mat-card appearance="outlined">
+        <div class="filter-group">
+          <label>Duration</label>
+          <mat-select
+            formControlName="durationSlot"
+            (selectionChange)="onDurationSelectionChange($event)"
+          >
+            <mat-option value="">Any</mat-option>
+            <mat-option value="short">&lt;= 4 hours</mat-option>
+            <mat-option value="medium">4–8 hours</mat-option>
+            <mat-option value="long">&gt; 8 hours</mat-option>
+          </mat-select>
+        </div>
+      </mat-card>
+      <mat-card appearance="outlined">
+        <div class="filter-group">
+          <label>Sort by</label>
+          <mat-select formControlName="sortBy" (selectionChange)="onPriceSelectionChange($event)">
+            <mat-option value="price">Price</mat-option>
+            <mat-option value="duration">Duration</mat-option>
+          </mat-select>
+        </div>
+      </mat-card>
+    </div>
+  }
+  @if (filteredFlights.length === 0) {
+    <div class="no-results">No flights found. Try another search.</div>
+  }
+
+  <div class="results-container">
+    @for (item of filteredFlights; track $index) {
+      <app-flight-card [flight]="item" (book)="onBook($event)"></app-flight-card>
+    }
+  </div>
+</div>

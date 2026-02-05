@@ -1,0 +1,50 @@
+ <div class="main-wrapper">
+    <div class="search-wrapper">
+<form [formGroup]="form" (ngSubmit)="submit()" class="search-form search-section col">
+   
+  <mat-form-field appearance="outline">
+    <mat-label>Source</mat-label>
+    <input matInput formControlName="from" />
+    @if (form.get('from')?.hasError('required')) {
+      <mat-error> Source is required </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Destination</mat-label>
+    <input matInput formControlName="to" />
+    @if (form.get('to')?.hasError('required')) {
+      <mat-error> Destination is required </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Departure date</mat-label>
+    <input matInput [matDatepicker]="depPicker" [min]="today" formControlName="departureDate" />
+    <mat-datepicker-toggle matSuffix [for]="depPicker"></mat-datepicker-toggle>
+    <mat-datepicker #depPicker></mat-datepicker>
+    @if (form.get('departureDate')?.hasError('required')) {
+      <mat-error> Departure date is required </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Return date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="retPicker"
+      [min]="form.get('departureDate')?.value"
+      formControlName="returnDate"
+    />
+    <mat-datepicker-toggle matSuffix [for]="retPicker"></mat-datepicker-toggle>
+    <mat-datepicker #retPicker></mat-datepicker>
+    @if (form.errors?.['dateRangeInvalid']) {
+      <mat-error> Return date must be after departure date </mat-error>
+    }
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit">Search &amp; Book</button>
+</form>
+</div>
+  </div>

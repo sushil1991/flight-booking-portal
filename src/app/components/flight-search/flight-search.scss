@@ -1,0 +1,26 @@
+.col {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+}
+.main-wrapper {
+  background-image: url(/assets/images/bgBanner.jpg);
+  background-size: 100% 568px;
+  height: 80%;
+  margin: 0 auto;
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .search-section {
+      background: #ffffffd4;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      height: 110px;
+      justify-content: center;
+      border-radius: 20px;
+    }
+  }
+}

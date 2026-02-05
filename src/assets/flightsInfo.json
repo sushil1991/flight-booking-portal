@@ -1,0 +1,72 @@
+[
+  {
+    "id": "F001",
+    "airline": "Air Alpha",
+    "from": "LHR",
+    "to": "JFK",
+    "departure": "2026-02-10T00:00:00.000Z",
+    "arrival": "2026-02-10T00:00:00.000Z",
+    "durationMinutes": 480,
+    "price": 550
+  },
+  {
+    "id": "F002",
+    "airline": "SpiceJet",
+    "from": "PUN",
+    "to": "DEL",
+    "departure": "2026-02-10T00:00:00.000Z",
+    "arrival": "2026-02-11T00:00:00.000Z",
+    "durationMinutes": 510,
+    "price": 520
+  },
+   {
+    "id": "F003",
+    "airline": "AirIndia",
+    "from": "PUN",
+    "to": "DEL",
+    "departure": "2026-02-10T00:00:00.000Z",
+    "arrival": "2026-02-11T00:00:00.000Z",
+    "durationMinutes": 1510,
+    "price": 10
+  },
+    {
+    "id": "F004",
+    "airline": "British Airways",
+    "from": "MUM",
+    "to": "HTR",
+    "departure": "2026-02-11T00:00:00.000Z",
+    "arrival": "2026-02-15T00:00:00.000Z",
+    "durationMinutes": 510,
+    "price": 520
+  },
+      {
+    "id": "F005",
+    "airline": "Indigo",
+    "from": "PUN",
+    "to": "DEL",
+    "departure": "2026-02-11T00:00:00.000Z",
+    "arrival": "2026-02-15T00:00:00.000Z",
+    "durationMinutes": 610,
+    "price": 820
+  },
+      {
+    "id": "F006",
+    "airline": "Indigo",
+    "from": "MUM",
+    "to": "HTR",
+    "departure": "2026-02-11T00:00:00.000Z",
+    "arrival": "2026-02-15T00:00:00.000Z",
+    "durationMinutes": 250,
+    "price": 520
+  },
+      {
+    "id": "F007",
+    "airline": "Indigo",
+    "from": "PUN",
+    "to": "DEL",
+    "departure": "2026-02-11T00:00:00.000Z",
+    "arrival": "2026-02-15T00:00:00.000Z",
+    "durationMinutes": 310,
+    "price": 220
+  }
+]

@@ -14,5 +14,24 @@
         }
       </div>
     </mat-card>
+    <mat-card appearance="outlined" class="time-slot-card">
+      <div class="filter-group">
+        <label class="title">Departure Time</label>
+
+        <mat-button-toggle-group
+          class="time-wrapper"
+          name="departureTimes"
+          [value]="selectedSlot"
+          appearance="legacy"
+        >
+          @for (slot of timeSlots; track $index) {
+            <mat-button-toggle [value]="slot.value" (click)="onTimeSelect(slot.value)">
+              {{ slot.label }} <br />
+              <small>{{ slot.range }}</small>
+            </mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+    </mat-card>
   </div>
 }

@@ -21,7 +21,7 @@ describe('FlightCard', () => {
     expect(component).toBeTruthy();
   });
   it('should have book event emitter', () => {
-    expect(component.book).toBeDefined();
-    expect(component.book.emit).toBeDefined();
+    expect(component.bookFlight).toBeDefined();
+    expect(component.bookFlight.emit).toBeDefined();
   });
 });

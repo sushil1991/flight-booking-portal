@@ -13,9 +13,9 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class FlightCard {
   @Input() flight!: Flight;
-  @Output() book = new EventEmitter<Flight>();
+  @Output() bookFlight = new EventEmitter<Flight>();
 
   onBook(): void {
-    this.book.emit(this.flight);
+    this.bookFlight.emit(this.flight);
   }
 }

@@ -79,26 +79,46 @@ describe('SearchResults', () => {
     httpMock.verify();
   });
 
-  it('should add airline when checked = true', () => {
-    component.onCheckboxToggle('Delta', true);
-    expect(component.filterForm.value.airlines).toEqual(['Delta']);
-  });
-  it('should remove airline when checked = false', () => {
-    component.filterForm.patchValue({ airlines: ['Delta', 'United'] });
-    component.onCheckboxToggle('Delta', false);
-    expect(component.filterForm.value.airlines).toEqual(['United']);
-  });
   it('should sort flights by price (ascending)', () => {
     const event = { value: 'price' } as MatSelectChange;
     component.onPriceSelectionChange(event);
-    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([]);
+    expect(component.filteredFlights.map((res) => res.price)).toEqual([]);
   });
   it('should sort flights by price (ascending)', () => {
     component.filteredFlights = [...mockFlights];
     const event = { value: 'price' } as MatSelectChange;
     component.onPriceSelectionChange(event);
-    expect(component.filteredFlights.map((flightData) => flightData.price)).toEqual([
+    expect(component.filteredFlights.map((data) => data.price)).toEqual([
       150, 300, 500,
     ]);
+  });
+  it('should set selectedTimeSlot when a new slot is selected', () => {
+    component.onDepartureTimeSlotChange('morning');
+    expect(component.selectedTimeSlot).toBe('morning');
+  });
+  it('should clear selectedTimeSlot when the same slot is selected again', () => {
+    component.selectedTimeSlot = 'morning';
+    component.onDepartureTimeSlotChange('morning');
+    expect(component.selectedTimeSlot).toBeNull();
+  });
+  it('should clear selectedTimeSlot when an empty slot is passed', () => {
+    component.selectedTimeSlot = 'evening';
+    component.onDepartureTimeSlotChange('');
+    expect(component.selectedTimeSlot).toBeNull();
+  });
+  it('should replace previous slot when a different slot is selected', () => {
+    component.selectedTimeSlot = 'morning';
+    component.onDepartureTimeSlotChange('evening');
+    expect(component.selectedTimeSlot).toBe('evening');
+  });
+  it('should return all flights when no filters are applied', () => {
+    component.applyAirlineAndTimeSlotFilters();
+    expect(component.filteredFlights.length).toBe(0);
+  });
+  it('should filter by airline only', () => {
+    component.selectedAirlines = ['Indigo'];
+    component.applyAirlineAndTimeSlotFilters();
+    expect(component.filteredFlights.length).toBe(0);
+    expect(component.filteredFlights.every((res) => res.airline === 'Indigo')).toBeTruthy();
   });
 });

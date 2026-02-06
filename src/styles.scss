@@ -42,7 +42,7 @@ body {
   width: 170px;
 
   .filter-group {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: 10px;
 

@@ -7,4 +7,5 @@ export interface Flight {
   arrival: string;   
   durationMinutes: number;
   price: number;
+  departureTime?:any
 }

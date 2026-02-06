@@ -5,6 +5,7 @@
         [airlines]="airlines"
         (airlineChange)="onCheckboxToggle($event.airline, $event.checked)"
         [flights]="flights"
+        (timeSlotChange)="onDepartureTimeSlotChange($event)"
       >
       </app-flight-filters>
       <mat-card appearance="outlined">
@@ -38,7 +39,7 @@
 
   <div class="results-container">
     @for (item of filteredFlights; track $index) {
-      <app-flight-card [flight]="item" (book)="onBook($event)"></app-flight-card>
+      <app-flight-card [flight]="item" (bookFlight)="onflightBooking($event)"></app-flight-card>
     }
   </div>
 </div>

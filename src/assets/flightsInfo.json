@@ -1,7 +1,7 @@
 [
   {
     "id": "F001",
-    "airline": "Air Alpha",
+    "airline": "SpiceJet",
     "from": "LHR",
     "to": "JFK",
     "departure": "2026-02-10T01:30:00.000Z",
@@ -34,7 +34,7 @@
   },
   {
     "id": "F004",
-    "airline": "British Airways",
+    "airline": "BritishAirways",
     "from": "MUM",
     "to": "HTR",
     "departure": "2026-02-11T00:00:00.000Z",

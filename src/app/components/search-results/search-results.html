@@ -36,10 +36,15 @@
   @if (filteredFlights.length === 0) {
     <div class="no-results">No flights found. Try another search.</div>
   }
-
-  <div class="results-container">
-    @for (item of filteredFlights; track $index) {
-      <app-flight-card [flight]="item" (bookFlight)="onflightBooking($event)"></app-flight-card>
-    }
+  <div>
+    <div style="margin-bottom: 20px">
+      Search Results For Flights from
+      <b>{{ filteredFlights[0].from }} to {{ filteredFlights[0].to }}</b>
+    </div>
+    <div class="results-container">
+      @for (item of filteredFlights; track $index) {
+        <app-flight-card [flight]="item" (bookFlight)="onflightBooking($event)"></app-flight-card>
+      }
+    </div>
   </div>
 </div>
